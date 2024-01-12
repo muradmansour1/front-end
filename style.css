@@ -1,0 +1,252 @@
+body:not(.homebody){
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 14%, rgb(0, 134, 161) 100%)
+}
+.homebody{
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 14%, rgb(0, 134, 161) 100%);
+  flex-direction: column;
+  align-items: center;
+}
+
+/************ For the Nav BAr ***************/
+#navbar{
+  background-color: #717378;
+  height: 70px;
+  font-size: 1.5rem;
+  width: 100%;
+}
+#navbarHome{
+  background-color: #717378;
+  height: 70px;
+  font-size: 1.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-brand{
+  font-size: 1.7rem;
+  margin-left: 10px;
+}
+.profile-container {
+  position: relative;
+}
+.profile-icon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 35px;
+}
+.profile-icon img{
+  width: 40px;
+  height: 40px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 110%; 
+  right: 10px;
+  min-width: 130px; 
+  background-color: #fff; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  z-index: 1;
+}
+.dropdown-content a {
+  color: #333; 
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease; 
+}
+.dropdown-content a:hover {
+  background-color: #f0f0f0; 
+}
+/*****************************************/
+
+
+/*************** Home.html *******************/
+a{
+  text-decoration: none;
+}
+.submit-btn{
+  border: 2px solid black;
+  color: white;
+  background-color: blue;
+}
+.submit-btn:hover{
+  border: 2px solid black;
+  color: white;
+  background-color: blue;
+}
+.field{
+  height: 45px;
+}
+#SearchAnime{
+  margin-top: 90px;
+  width: 15%;
+}
+.container{
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+}
+.innerContainer{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 10px;
+  margin: 0;
+}
+.box{
+  /* background-color: black; */
+  width: calc(25% - 10px);
+  height: 500px;
+  margin-bottom: 5px;
+  margin: 0 auto;
+}
+.img{
+  height: 420px;
+}
+.title{
+  color: white;
+  font-size: 1rem;
+}
+/********************************/
+
+/*************** profile.html *****************/
+.main-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-top: 300px;
+  height: 100vh;
+}
+.profile-box{
+  background-color: white;
+  color: rgb(3, 3, 3);
+  padding: 40px;
+  text-align: center;
+  width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.979);
+  margin-bottom: 50px;
+}
+.profile-info{
+  margin-top: 20px;
+}
+label{
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.profile-info p{
+  margin:0;
+}
+.profile-buttons{
+  margin-top: 20px;
+}
+.profile-buttons button{
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+#editAccount{
+  background-color: #007bff;
+}
+#editAccount:hover{
+  background-color: #0056b3;
+}
+#deleteAccount{
+  background-color: #ff0000;
+}
+#deleteAccount:hover{
+  background-color: #b30000;
+}
+.container1{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px auto;
+}
+.container1 h1{
+  color: white;
+  padding: 50px;
+}
+
+/************** updateProfile.html *************/
+.updateProfile-box{
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-group{
+  margin-bottom: 15px;
+  width: 100%;
+}
+.form-group label{
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.form-group input{
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.button-container button{
+  flex: 1;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#cancelButton{
+  background-color: rgb(210, 210, 210);
+}
+#cancelButton:hover{
+  background-color: rgb(156, 156, 156);
+}
+#updateButton{
+  background-color: rgb(0, 173, 0);
+}
+#updateButton:hover{
+  background-color: rgb(1, 146, 1);
+}
+/*************************************/
+
+
+/****************** For favorite button ****************/
+.favorite-heart {
+  font-size: 24px;
+  color: #ccc; /* Unfilled heart color */
+  cursor: pointer;
+  background-color: #333;
+  border-radius: 40px;
+}
+.favorite-heart.filled {
+  color: #e74c3c; /* Filled heart color */
+}
+
