@@ -10,7 +10,7 @@
 <body>
   <nav id="navbarHome" class="navbar navbar-light navbar-expand-md px-0 fixed-top">
     <div class="container-fluid">
-      <a class="text-dark navbar-brand" href="/home">AnimeDB</a>
+      <a class="text-dark navbar-brand" href="/home.html">AnimeDB</a>
     </div>
     <div class="profile-container">
       <div class="profile-icon" onclick="toggleDropdown(event)">
@@ -19,7 +19,7 @@
       </div>
       <!-- Dropdown content -->
       <div class="dropdown-content" id="dropdownContent">
-          <a href="/profile">Profile</a>
+          <a href="/profile.html">Profile</a>
           <a href="#">Logout</a>
       </div>
     </div>
@@ -34,7 +34,7 @@
         <label for="email">Email:</label>
         <p id="email"></p>
         <div class="profile-buttons">
-          <button id="editAccount" onclick="window.location.href='/profile/update'">Edit</button>
+          <button id="editAccount" onclick="window.location.href='/updateUser.html'">Edit</button>
           <button id="deleteAccount" onclick="deleteAccount(this)">Delete</button>
         </div>
       </div>

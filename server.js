@@ -12,10 +12,11 @@ function registerUser(){
       headers: {
         'Content-Type': 'application/json'
       },
-      credentials: 'include', 
+      // credentials: 'include',
       body: JSON.stringify(userInfo)
     }
-    fetch("http://localhost:8000/api/register", option)
+    console.log()
+    fetch("https://anime-imdb-7fa4f4bd86dd.herokuapp.com/api/register", option)
       .then(res => {
         return res.json()
       })
@@ -25,7 +26,7 @@ function registerUser(){
           document.getElementById("userNameError").innerText = res.errors.username?.message || ''
           document.getElementById("emailError").innerText = res.errors.email?.message || ''
         }else{
-          window.location.replace("/login")
+          window.location.replace("/login.html")
         }
       })
       .catch((err) => {
@@ -35,37 +36,69 @@ function registerUser(){
   
 }
 function loginUser(){
-  document.getElementById("login-form").addEventListener('submit', (e) =>{
+  document.getElementById("login-form").addEventListener('submit', (e) => {
     e.preventDefault();
     const username = document.getElementById('user_name').value;
     const email = document.getElementById('email').value;
-  
-    const userLoginInfo = {username, email}
+    const userLoginInfo = { username, email };
     const option = {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
-      credentials: 'include', 
+      // credentials: 'include',
       body: JSON.stringify(userLoginInfo)
-    }
-    fetch("http://localhost:8000/api/login", option)
-      .then(res =>{
-        return res.json()
-      })
-      .then(res =>{
-        console.log("res ---> ", res)
+    };
+    fetch("https://anime-imdb-7fa4f4bd86dd.herokuapp.com/api/login", option)
+      .then(res => res.json())
+      .then(res => {
+        console.log("res ---> ", res);
         if(res.errors){
-          document.getElementById("userNameError").innerText = res?.errors
-        }else{
-          window.location.replace("/home")
+          document.getElementById("userNameError").innerText = res?.errors;
+        } else {
+          console.log("token recieved", res.token)
+          // Assuming the token is in the response
+          localStorage.setItem('userToken', res.token); // Storing the token
+          window.location.replace("/home.html");
         }
       })
-      .catch(err =>{
-        console.log("err ---> ", err)
-      })
-  })
-}  
+      .catch(err => {
+        console.log("err ---> ", err);
+      });
+  });
+}
+// function loginUser(){
+//   document.getElementById("login-form").addEventListener('submit', (e) =>{
+//     e.preventDefault();
+//     const username = document.getElementById('user_name').value;
+//     const email = document.getElementById('email').value;
+  
+//     const userLoginInfo = {username, email}
+//     const option = {
+//       method: "POST",
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       credentials: 'include', 
+//       body: JSON.stringify(userLoginInfo)
+//     }
+//     fetch("http://localhost:8000/api/login", option)
+//       .then(res =>{
+//         return res.json()
+//       })
+//       .then(res =>{
+//         console.log("res ---> ", res)
+//         if(res.errors){
+//           document.getElementById("userNameError").innerText = res?.errors
+//         }else{
+//           window.location.replace("/home")
+//         }
+//       })
+//       .catch(err =>{
+//         console.log("err ---> ", err)
+//       })
+//   })
+// }  
 
 /************************/
 function toggleDropdown(event) {
@@ -177,15 +210,17 @@ function toggleFavorite(event){
   //   favorites.push(animeID);
   //   localStorage.setItem('favorites', JSON.stringify(favorites));
     heartButton.classList.add('filled');
+    const token = localStorage.getItem('userToken')
     const option1 = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include',
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+      },
+      //credentials: 'include',
     }
 
-    fetch(`http://localhost:8000/api/users/getuser`, option1)
+    fetch(`https://anime-imdb-7fa4f4bd86dd.herokuapp.com/api/users/getuser`, option1)
       .then(res => {
           return res.json()
       })
@@ -202,7 +237,7 @@ function toggleFavorite(event){
               },
               body: JSON.stringify(animeInfo),
             }
-            fetch(`http://localhost:8000/api/users/favorites/${userId}`, option2)
+            fetch(`https://anime-imdb-7fa4f4bd86dd.herokuapp.com/api/users/favorites/${userId}`, option2)
                 .then(res => res.json())
                 .then(res => {
                     console.log(res)
@@ -214,9 +249,9 @@ function toggleFavorite(event){
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                credentials: 'include',
+               // credentials: 'include',
             }
-            fetch(`http://localhost:8000/api/users/favorites/${userId}`, option3)
+            fetch(`https://anime-imdb-7fa4f4bd86dd.herokuapp.com/api/users/favorites/${userId}`, option3)
                 .then(res => res.json())
                 .then(res => {
                     console.log(res);
@@ -229,15 +264,17 @@ function toggleFavorite(event){
 }
 
 function loggedInUserInfo(){
+  const token = localStorage.getItem('userToken')
   const option = {
     method: "GET",
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': token
     },
-    credentials: 'include',
+    //credentials: 'include',
   }
   
-  fetch("http://localhost:8000/api/users/getuser", option)
+  fetch("https://anime-imdb-7fa4f4bd86dd.herokuapp.com/api/users/getuser", option)
     .then(res => {
       return res.json()
     })
@@ -280,16 +317,16 @@ function deleteAccount(button){
     headers: {
       'Content-Type': 'application/json'
     },
-    credentials: 'include',
+   // credentials: 'include',
   }
   const userId = button.dataset.userId;
   console.log(userId)
-  fetch(`http://localhost:8000/api/users/${userId}`, option)
+  fetch(`https://anime-imdb-7fa4f4bd86dd.herokuapp.com/api/users/${userId}`, option)
     .then(res => {
       return res.json()
     })
     .then(res =>{
-      window.location.replace('/')
+      window.location.replace('/register.html')
     })
     .catch((err) => {
       console.log("err --->", err)
@@ -305,18 +342,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function updateUser(event) {
   event.preventDefault();
+  const token = localStorage.getItem('userToken')
   const option1 = {
     method: "GET",
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': token
     },
-    credentials: 'include',
+    //credentials: 'include',
   }
-  fetch("http://localhost:8000/api/users/getuser", option1)
+  fetch("https://anime-imdb-7fa4f4bd86dd.herokuapp.com/api/users/getuser", option1)
     .then(res => {
       return res.json()
     })
     .then(res =>{
+      console.log('res --> ', res)
       if(res.results){
         const id = res.results.id
         const username = document.getElementById('userName').value;
@@ -327,10 +367,10 @@ function updateUser(event) {
           headers: {
             'Content-Type': 'application/json'
           },
-          credentials: 'include',
+          //credentials: 'include',
           body: JSON.stringify(userInfo)
         }
-        fetch(`http://localhost:8000/api/users/${id}`, option2)
+        fetch(`https://anime-imdb-7fa4f4bd86dd.herokuapp.com/api/users/${id}`, option2)
           .then(res => {
             return res.json()
           })
@@ -338,7 +378,7 @@ function updateUser(event) {
             if(res.errors){
               document.getElementById('emailError').innerText = res.errors.email?.message || ''
             }else{
-              window.location.replace('/profile')
+              window.location.replace('/profile.html')
             }
           })
           .catch((err) => {
